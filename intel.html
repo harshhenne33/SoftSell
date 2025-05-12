@@ -1,0 +1,87 @@
+import React from "react";
+import { useState } from "react";
+import { motion } from "framer-motion";
+
+export default function App() {
+  const [darkMode, setDarkMode] = useState(false);
+  const toggleDark = () => setDarkMode(!darkMode);
+
+  return (
+    <div className={darkMode ? "dark bg-gray-900 text-white" : "bg-white text-black"}>
+      <header className="p-6 text-center">
+        <h1 className="text-4xl font-bold">SoftSell</h1>
+        <p className="mt-2 text-lg">Maximize Value from Unused Software</p>
+        <button
+          onClick={toggleDark}
+          className="mt-4 bg-blue-600 text-white px-4 py-2 rounded"
+        >
+          Toggle Light/Dark Mode
+        </button>
+      </header>
+
+      <motion.section
+        className="py-10 text-center"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+      >
+        <h2 className="text-2xl font-semibold mb-4">How It Works</h2>
+        <div className="flex flex-col md:flex-row justify-center gap-6">
+          {['Upload License', 'Get Valuation', 'Get Paid'].map((step, i) => (
+            <div key={i} className="p-4 border rounded shadow-md w-60">
+              <div className="text-4xl mb-2">{i + 1}</div>
+              <p>{step}</p>
+            </div>
+          ))}
+        </div>
+      </motion.section>
+
+      <section className="py-10 bg-gray-100 dark:bg-gray-800">
+        <h2 className="text-center text-2xl font-semibold">Why Choose Us</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-6">
+          {["Fast Payouts", "Secure Transactions", "Transparent Pricing", "Trusted by 1000+ Clients"].map((point, i) => (
+            <div key={i} className="p-4 border rounded bg-white dark:bg-gray-700">
+              <p>{point}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="py-10">
+        <h2 className="text-center text-2xl font-semibold mb-4">Testimonials</h2>
+        <div className="flex flex-col md:flex-row justify-center gap-4">
+          <div className="border p-4 rounded w-72 shadow">
+            <p>"The process was simple and the payouts were quick!"</p>
+            <p className="text-sm mt-2">- Aman Kapoor, IT Manager, SoftEdge Ltd.</p>
+          </div>
+          <div className="border p-4 rounded w-72 shadow">
+            <p>"Highly professional and user-friendly platform."</p>
+            <p className="text-sm mt-2">- Neha Sharma, Founder, TechBright</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-10 bg-gray-50 dark:bg-gray-900">
+        <h2 className="text-center text-2xl font-semibold mb-6">Contact Us</h2>
+        <form className="max-w-xl mx-auto grid grid-cols-1 gap-4">
+          <input type="text" placeholder="Name" className="p-2 border rounded" required />
+          <input type="email" placeholder="Email" className="p-2 border rounded" required />
+          <input type="text" placeholder="Company" className="p-2 border rounded" />
+          <select className="p-2 border rounded">
+            <option>License Type</option>
+            <option>Enterprise</option>
+            <option>Open Source</option>
+            <option>Educational</option>
+          </select>
+          <textarea placeholder="Message" className="p-2 border rounded" rows="4"></textarea>
+          <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">
+            Submit
+          </button>
+        </form>
+      </section>
+
+      <footer className="text-center p-4 text-sm">
+        © 2025 SoftSell | Created by [Your Name]
+      </footer>
+    </div>
+  );
+}
